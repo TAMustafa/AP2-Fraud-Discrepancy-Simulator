@@ -345,7 +345,15 @@ demo = gr.Interface(
     flagging_mode="never",
 )
 
-if __name__ == "__main__" and not os.getenv("SPACE_ID"):
-    # Local dev: launch the Gradio server. On Hugging Face Spaces, the platform
-    # will serve the `demo` object automatically, so we skip calling launch().
-    demo.launch()
+# Expose under the conventional name used by Hugging Face Spaces
+# Some environments auto-discover `app` rather than `demo`.
+demo = demo.queue(default_concurrency_limit=2)
+app = demo
+
+if __name__ == "__main__":
+    # Launch the Gradio server. On Hugging Face Spaces (SDK=Gradio), this is the documented pattern.
+    demo.launch(
+        server_name="0.0.0.0",
+        server_port=int(os.getenv("PORT", "7860")),
+        show_api=False,
+    )
