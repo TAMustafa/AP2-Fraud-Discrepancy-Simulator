@@ -338,9 +338,9 @@ demo = gr.Interface(
         gr.Textbox(label="Validation Results", lines=10),
         gr.Textbox(label="LLM Analysis", lines=6),
     ],
-    title="AP2 Fraud/Discrepancy Simulator",
+    title="AP2 Validator/Simulator",
     description=(
-        "Simulates AP2-style flows with HMAC-signed mandates. Optional LLM agent uses OpenAI via LangChain."
+        "Simulates AP2-style flows. Optional LLM agent uses OpenAI via LangChain."
     ),
     flagging_mode="never",
 )
