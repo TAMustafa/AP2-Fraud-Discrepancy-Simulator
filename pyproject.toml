@@ -1,0 +1,12 @@
+[project]
+name = "ap2roles-mandates"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "gradio>=5.46.1",
+    "langchain>=0.3.27",
+    "langchain-community>=0.3.29",
+    "langchain-openai>=0.2.6",
+    "python-dotenv>=1.0.1",
+]
