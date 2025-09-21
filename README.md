@@ -126,6 +126,37 @@ Note: This project uses demo-grade signing (HMAC over canonical JSON). For produ
 - No LLM: Ensure `OPENAI_API_KEY` is set and `langchain-openai` is installed (it is declared in `pyproject.toml`).
 - Port conflicts: Gradio defaults may conflict if multiple apps are running. Adjust host/port in `demo.launch()` as needed.
 
+## Deploying to Hugging Face Spaces
+
+You can host this app on Hugging Face Spaces with a stable public URL.
+
+Steps:
+
+1. __Create a new Space__
+   - Go to https://huggingface.co/new-space
+   - Choose SDK: Gradio
+   - Runtime: Python 3.10+ (3.12 is fine)
+
+2. __Upload repo files__
+   - Include at minimum: `app.py`, `requirements.txt`, and this `README.md`.
+   - The app defines a `demo = gr.Interface(...)` object in `app.py`. On Spaces, the platform serves this automatically. In local mode only, `demo.launch()` is called.
+
+3. __Configure secrets__ (if using OpenAI LLM agent)
+   - In the Space Settings → Secrets, add:
+     - `OPENAI_API_KEY`: your API key
+     - Optional: `OPENAI_MODEL` (defaults to `gpt-4o-mini`)
+   - Do not commit `.env` to the Space. The app uses environment variables directly on Spaces.
+
+4. __Dependencies__
+   - Spaces installs from `requirements.txt` automatically.
+
+5. __Run__
+   - The Space will build and start the app. You’ll get a public URL when it’s live.
+
+Notes:
+- The Flag button is disabled (`allow_flagging="never"`).
+- The LLM Agent checkbox is optional; leave it off to run deterministically.
+
 ## License
 
 This simulator is for demonstration and educational purposes.

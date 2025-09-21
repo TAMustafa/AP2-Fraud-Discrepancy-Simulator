@@ -345,5 +345,7 @@ demo = gr.Interface(
     allow_flagging="never",
 )
 
-if __name__ == "__main__":
+if __name__ == "__main__" and not os.getenv("SPACE_ID"):
+    # Local dev: launch the Gradio server. On Hugging Face Spaces, the platform
+    # will serve the `demo` object automatically, so we skip calling launch().
     demo.launch()
