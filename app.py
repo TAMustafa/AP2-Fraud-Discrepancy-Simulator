@@ -342,7 +342,7 @@ demo = gr.Interface(
     description=(
         "Simulates AP2-style flows with HMAC-signed mandates. Optional LLM agent uses OpenAI via LangChain."
     ),
-    allow_flagging="never",
+    flagging_mode="never",
 )
 
 if __name__ == "__main__" and not os.getenv("SPACE_ID"):
